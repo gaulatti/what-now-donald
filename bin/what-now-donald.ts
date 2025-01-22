@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 import * as cdk from 'aws-cdk-lib';
-import { WhatNowDonaldStack } from '../lib/what-now-donald-stack';
+import { WhatNowDonaldStack } from '../lib';
+
 
 const app = new cdk.App();
-new WhatNowDonaldStack(app, 'WhatNowDonaldStack', {
+new WhatNowDonaldStack(app, 'WhatNowDonald', {
   /* If you don't specify 'env', this stack will be environment-agnostic.
    * Account/Region-dependent features and context lookups will not work,
    * but a single synthesized template can be deployed anywhere. */
