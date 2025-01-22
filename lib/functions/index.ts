@@ -2,6 +2,7 @@ import { Duration, Stack } from 'aws-cdk-lib';
 import { Table } from 'aws-cdk-lib/aws-dynamodb';
 import { Rule, Schedule } from 'aws-cdk-lib/aws-events';
 import { LambdaFunction } from 'aws-cdk-lib/aws-events-targets';
+import { LayerVersion, Runtime } from 'aws-cdk-lib/aws-lambda';
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
 import { RetentionDays } from 'aws-cdk-lib/aws-logs';
 
@@ -18,6 +19,8 @@ import { RetentionDays } from 'aws-cdk-lib/aws-logs';
  * Additionally, a CloudWatch rule is created to schedule the Lambda function to run every minute.
  */
 const buildFunctions = (stack: Stack, lastProcessedTable: Table) => {
+  const chromeLambdaLayer = LayerVersion.fromLayerVersionArn(stack, `${stack.stackName}ChromiumLayer`, process.env.CHROMIUM_LAYER_ARN!);
+
   /**
    * Lambda function that fetches data from Truth Social and writes it to bsky
    */
@@ -25,14 +28,20 @@ const buildFunctions = (stack: Stack, lastProcessedTable: Table) => {
     functionName: `${stack.stackName}Fetch`,
     entry: './lib/functions/fetch.src.ts',
     handler: 'handler',
+    runtime: Runtime.NODEJS_22_X,
+    timeout: Duration.minutes(5),
     environment: {
       TABLE_NAME: lastProcessedTable.tableName,
       GEMINI_CREDENTIALS: process.env.GEMINI_CREDENTIALS!,
       BLUESKY_CREDENTIALS: process.env.BLUESKY_CREDENTIALS!,
       SLACK_CREDENTIALS: process.env.SLACK_CREDENTIALS!,
     },
-    timeout: Duration.seconds(30),
     logRetention: RetentionDays.ONE_WEEK,
+    layers: [chromeLambdaLayer],
+    memorySize: 8192,
+    bundling: {
+      externalModules: ['@sparticuz/chromium'],
+    },
   });
 
   /**
@@ -44,7 +53,7 @@ const buildFunctions = (stack: Stack, lastProcessedTable: Table) => {
    * Schedule the Lambda function to run every minute
    */
   new Rule(stack, `${stack.stackName}FetchScheduleRule`, {
-    ruleName:`${stack.stackName}FetchSchedule`,
+    ruleName: `${stack.stackName}FetchSchedule`,
     schedule: Schedule.rate(Duration.minutes(1)),
     targets: [new LambdaFunction(fetchLambda)],
   });

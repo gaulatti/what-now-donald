@@ -6,6 +6,8 @@
       "es2020",
       "dom"
     ],
+    "esModuleInterop": true,
+    "skipLibCheck": true,
     "declaration": true,
     "strict": true,
     "noImplicitAny": true,
