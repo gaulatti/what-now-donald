@@ -22,11 +22,15 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ vars.AWS_REGION }}
 
-      # Step 3: Install dependencies
+      # Step 3: Install esbuild globally
+      - name: Install esbuild globally
+        run: npm install -g esbuild
+
+      # Step 4: Install dependencies
       - name: Install dependencies
         run: npm install
 
-      # Step 4: Deploy via CDK (npm run deploy)
+      # Step 5: Deploy via CDK (npm run deploy)
       - name: Deploy CDK
         run: npm run deploy
         env:
