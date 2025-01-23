@@ -137,18 +137,10 @@ const handler = async (): Promise<void> => {
           text: 'What now, Donald?',
           blocks: [
             {
-              type: 'header',
-              text: {
-                type: 'plain_text',
-                text: 'What now, Donald?',
-                emoji: true,
-              },
-            },
-            {
               type: 'section',
               text: {
                 type: 'mrkdwn',
-                text: `*What did he say?*\n\n> ${output}\n\n<${post.url}|*View the original post* on Truth Social>`,
+                text: `*What now, Donald?*\n\n> ${output}\n\n<${post.url}|*View the original post* on Truth Social>`,
               },
             },
             {
