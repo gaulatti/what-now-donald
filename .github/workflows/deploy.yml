@@ -36,4 +36,4 @@ jobs:
         env:
           GEMINI_CREDENTIALS: ${{ secrets.GEMINI_CREDENTIALS }}
           BLUESKY_CREDENTIALS: ${{ secrets.BLUESKY_CREDENTIALS }}
-          SLACK_CREDENTIALS: ${{ secrets.SLACK_CREDENTIALS }}
+          SLACK_URL: ${{ secrets.SLACK_URL }}
