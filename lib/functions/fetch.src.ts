@@ -122,16 +122,13 @@ const handler = async (): Promise<void> => {
     try {
       for (const post of newPosts) {
         const prompt = `Tell me what this post is about and be concise with it. ${JSON.stringify(post)}`;
-        console.log(prompt);
         const result = await generativeModel.generateContent(prompt);
         const output = result.response.text();
 
         /**
          * Post the generated content to the Bluesky channel.
          */
-        await agent.post({
-          text: prepareBlueskyMessage(output, post),
-        });
+        await agent.post(prepareBlueskyMessage(output, post));
 
         /**
          * Sends a message to a Slack channel using Axios.
