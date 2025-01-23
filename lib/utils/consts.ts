@@ -16,10 +16,6 @@ const USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/
 const GEMINI_MODEL = 'gemini-2.0-flash-exp';
 const GEMINI_SAFETY_SETTINGS: SafetySetting[] = [
   {
-    category: HarmCategory.HARM_CATEGORY_UNSPECIFIED,
-    threshold: HarmBlockThreshold.BLOCK_NONE,
-  },
-  {
     category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
     threshold: HarmBlockThreshold.BLOCK_NONE,
   },
@@ -28,11 +24,15 @@ const GEMINI_SAFETY_SETTINGS: SafetySetting[] = [
     threshold: HarmBlockThreshold.BLOCK_NONE,
   },
   {
+    category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
+    threshold: HarmBlockThreshold.BLOCK_NONE,
+  },
+  {
     category: HarmCategory.HARM_CATEGORY_HARASSMENT,
     threshold: HarmBlockThreshold.BLOCK_NONE,
   },
   {
-    category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
+    category: 'HARM_CATEGORY_CIVIC_INTEGRITY' as HarmCategory,
     threshold: HarmBlockThreshold.BLOCK_NONE,
   },
 ];
