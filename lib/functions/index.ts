@@ -39,7 +39,7 @@ const buildFunctions = (stack: Stack, lastProcessedTable: Table) => {
     },
     logRetention: RetentionDays.ONE_WEEK,
     layers: [chromeLambdaLayer],
-    memorySize: 8192,
+    memorySize: 1024,
     bundling: {
       externalModules: ['@sparticuz/chromium'],
     },
