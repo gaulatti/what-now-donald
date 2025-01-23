@@ -55,7 +55,7 @@ const buildFunctions = (stack: Stack, lastProcessedTable: Table) => {
    */
   new Rule(stack, `${stack.stackName}FetchScheduleRule`, {
     ruleName: `${stack.stackName}FetchSchedule`,
-    schedule: Schedule.rate(Duration.minutes(15)),
+    schedule: Schedule.rate(Duration.minutes(5)),
     targets: [new LambdaFunction(fetchLambda)],
   });
 

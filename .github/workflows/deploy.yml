@@ -37,5 +37,4 @@ jobs:
           BLUESKY_USERNAME: ${{ secrets.BLUESKY_USERNAME }}
           BLUESKY_PASSWORD: ${{ secrets.BLUESKY_PASSWORD }}
           GEMINI_CREDENTIALS: ${{ secrets.GEMINI_CREDENTIALS }}
-          BLUESKY_CREDENTIALS: ${{ secrets.BLUESKY_CREDENTIALS }}
           SLACK_URL: ${{ secrets.SLACK_URL }}
