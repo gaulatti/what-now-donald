@@ -121,7 +121,7 @@ const handler = async (): Promise<void> => {
 
     try {
       for (const post of newPosts) {
-        const prompt = `Tell me what this post is about and be concise with it. ${JSON.stringify(post)}`;
+        const prompt = `Tell me what this post is about and be concise with it (no more than 230 chars). ${JSON.stringify(post)}`;
         const result = await generativeModel.generateContent(prompt);
         const output = result.response.text();
 
