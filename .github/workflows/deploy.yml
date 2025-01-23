@@ -38,3 +38,4 @@ jobs:
           BLUESKY_PASSWORD: ${{ secrets.BLUESKY_PASSWORD }}
           GEMINI_CREDENTIALS: ${{ secrets.GEMINI_CREDENTIALS }}
           SLACK_URL: ${{ secrets.SLACK_URL }}
+          CHROMIUM_LAYER_ARN: ${{ secrets.CHROMIUM_LAYER_ARN }}
