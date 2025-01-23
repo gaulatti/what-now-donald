@@ -134,13 +134,13 @@ const handler = async (): Promise<void> => {
          * Sends a message to a Slack channel using Axios.
          */
         const message = {
-          text: 'What now, Donald?',
+          text: output,
           blocks: [
             {
               type: 'section',
               text: {
                 type: 'mrkdwn',
-                text: `*What now, Donald?*\n\n> ${output}\n\n<${post.url}|*View the original post* on Truth Social>`,
+                text: `> ${output}\n\n<${post.url}|*View the original post* on Truth Social>`,
               },
             },
             {
