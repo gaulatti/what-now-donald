@@ -16,7 +16,7 @@
  * @property {string} blurhash - A compact representation of the media for placeholder purposes.
  * @property {string} processing - The processing status of the media.
  */
-interface MediaAttachment {
+export interface MediaAttachment {
   id: string;
   type: string;
   url: string;
@@ -40,7 +40,7 @@ interface MediaAttachment {
  * @property {MediaDimensions} original - The dimensions of the original media.
  * @property {MediaDimensions} [small] - The dimensions of the smaller version of the media, if available.
  */
-interface MediaMeta {
+export interface MediaMeta {
   original: MediaDimensions;
   small?: MediaDimensions;
 }
@@ -53,7 +53,7 @@ interface MediaMeta {
  * @property {string} size - The size of the media file.
  * @property {number} aspect - The aspect ratio of the media.
  */
-interface MediaDimensions {
+export interface MediaDimensions {
   width: number;
   height: number;
   size: string;
@@ -95,7 +95,7 @@ interface MediaDimensions {
  * @property {boolean} tv_onboarded - Indicates if the account has onboarded TV.
  * @property {boolean} tv_account - Indicates if the account is a TV account.
  */
-interface Account {
+export interface Account {
   id: string;
   username: string;
   acct: string;
@@ -167,7 +167,7 @@ interface Account {
  * @property {any | null} poll - A poll object associated with the post, if any.
  * @property {any[]} emojis - A list of emojis included in the post.
  */
-interface Post {
+export interface Post {
   id: string;
   created_at: string;
   in_reply_to_id: string | null;
@@ -211,7 +211,7 @@ interface Post {
  * @property {string} url - The URL to the mentioned user's profile.
  * @property {string} acct - The account identifier of the mentioned user.
  */
-interface Mention {
+export interface Mention {
   id: string;
   username: string;
   url: string;
@@ -241,7 +241,7 @@ interface Mention {
  * @property {any | null} links - Additional links related to the card, or null if not available.
  * @property {any | null} group - Group information related to the card, or null if not available.
  */
-interface Card {
+export interface Card {
   id: string | null;
   url: string;
   title: string;
@@ -259,4 +259,61 @@ interface Card {
   blurhash: string;
   links: any | null;
   group: any | null;
+}
+
+/**
+ * Represents a slimmed-down version of media associated with a social media post.
+ *
+ * @interface SlimMedia
+ * @property {string} type - The type of the media (e.g., image, video).
+ * @property {string} url - The URL to the media.
+ * @property {string} preview_url - The URL to the preview of the media.
+ */
+interface SlimMedia {
+  type: string;
+  url: string;
+  preview_url: string;
+}
+
+/**
+ * Represents a slimmed-down version of a reblog in a social media post.
+ *
+ * @interface SlimReblog
+ * @property {string} id - The unique identifier of the reblog.
+ * @property {string} created_at - The timestamp when the reblog was created.
+ * @property {string} url - The URL to the reblog.
+ * @property {string} content - The content of the reblog.
+ * @property {string} [display_name] - The display name of the user who reblogged, if available.
+ * @property {SlimMedia[]} [media] - An array of media objects associated with the post (optional).
+ */
+interface SlimReblog {
+  id: string;
+  created_at: string;
+  url: string;
+  content: string;
+  display_name?: string;
+  media?: SlimMedia[];
+}
+
+/**
+ * Represents a simplified version of a post on Truth Social.
+ *
+ * @interface SlimPost
+ *
+ * @property {string} id - The unique identifier for the post.
+ * @property {string} created_at - The timestamp when the post was created.
+ * @property {string} url - The URL link to the post.
+ * @property {string} content - The textual content of the post.
+ * @property {string} [display_name] - The display name of the user who created the post (optional).
+ * @property {SlimMedia[]} [media] - An array of media objects associated with the post (optional).
+ * @property {SlimReblog} [reblog] - The reblog information if the post is a reblog (optional).
+ */
+export interface SlimPost {
+  id: string;
+  created_at: string;
+  url: string;
+  content: string;
+  display_name?: string;
+  media?: SlimMedia[];
+  reblog?: SlimReblog;
 }
