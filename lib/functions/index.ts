@@ -33,7 +33,8 @@ const buildFunctions = (stack: Stack, lastProcessedTable: Table) => {
     environment: {
       TABLE_NAME: lastProcessedTable.tableName,
       GEMINI_CREDENTIALS: process.env.GEMINI_CREDENTIALS!,
-      BLUESKY_CREDENTIALS: process.env.BLUESKY_CREDENTIALS!,
+      BLUESKY_USERNAME: process.env.BLUESKY_USERNAME!,
+      BLUESKY_PASSWORD: process.env.BLUESKY_PASSWORD!,
       SLACK_URL: process.env.SLACK_URL!,
     },
     logRetention: RetentionDays.ONE_WEEK,

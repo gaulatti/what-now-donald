@@ -1,6 +1,11 @@
 import { HarmBlockThreshold, HarmCategory, SafetySetting } from '@google/generative-ai';
 
 /**
+ * The accounts to fetch posts from.
+ */
+const ACCOUNTS = ['107780257626128497'];
+
+/**
  * The user agent used for making requests.
  */
 const USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36';
@@ -32,4 +37,4 @@ const GEMINI_SAFETY_SETTINGS: SafetySetting[] = [
   },
 ];
 
-export { GEMINI_MODEL, GEMINI_SAFETY_SETTINGS, USER_AGENT };
+export { ACCOUNTS, GEMINI_MODEL, GEMINI_SAFETY_SETTINGS, USER_AGENT };
