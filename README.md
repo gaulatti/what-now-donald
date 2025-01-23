@@ -1,5 +1,7 @@
 # What Now, Donald? - README
 
+**It's live!** https://bsky.app/profile/whatnowdonald.bsky.social
+
 ## 📖 Introduction
 
 **What Now, Donald?** is a TypeScript-based project built using the **AWS Cloud Development Kit (CDK)**. It is designed to integrate with social media platforms like **Truth Social** and **Bluesky**, leveraging **Google Generative AI** to process posts and generate content. The application fetches posts from Truth Social, analyzes them using AI, and publishes the results to Bluesky while also notifying a Slack channel.
