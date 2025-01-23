@@ -34,7 +34,7 @@ const buildFunctions = (stack: Stack, lastProcessedTable: Table) => {
       TABLE_NAME: lastProcessedTable.tableName,
       GEMINI_CREDENTIALS: process.env.GEMINI_CREDENTIALS!,
       BLUESKY_CREDENTIALS: process.env.BLUESKY_CREDENTIALS!,
-      SLACK_CREDENTIALS: process.env.SLACK_CREDENTIALS!,
+      SLACK_URL: process.env.SLACK_URL!,
     },
     logRetention: RetentionDays.ONE_WEEK,
     layers: [chromeLambdaLayer],
@@ -54,7 +54,7 @@ const buildFunctions = (stack: Stack, lastProcessedTable: Table) => {
    */
   new Rule(stack, `${stack.stackName}FetchScheduleRule`, {
     ruleName: `${stack.stackName}FetchSchedule`,
-    schedule: Schedule.rate(Duration.minutes(1)),
+    schedule: Schedule.rate(Duration.minutes(15)),
     targets: [new LambdaFunction(fetchLambda)],
   });
 
